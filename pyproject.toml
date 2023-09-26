@@ -18,12 +18,25 @@ black = "^23.0.0"
 coverage = { extras = ["toml"], version = "^7.3.1" }
 mypy = "^1.4.0"
 pytest = "^7.1.2"
+pytest-asyncio = "^0.21.1"
 pytest-cov = "^4.1.0"
 ruff = "0.0.291"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+strict = true
+plugins = [
+    "pydantic.mypy",
+]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+strict = false
+check_untyped_defs = true
+disallow_untyped_defs = false
 
 [tool.ruff]
 extend-select = [
