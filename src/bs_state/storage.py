@@ -1,17 +1,24 @@
 import abc
-from typing import Generic, Self, TypeVar
+from typing import Generic, TypeVar
 
 from pydantic import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
 
 
-class StateStorage(abc.ABC, Generic[T]):
-    @classmethod
-    @abc.abstractmethod
-    async def initialize(cls, initial_state: T) -> Self:
-        pass
+class StorageException(Exception):
+    pass
 
+
+class AccessException(StorageException):
+    pass
+
+
+class MissingStateException(StorageException):
+    pass
+
+
+class StateStorage(abc.ABC, Generic[T]):
     @abc.abstractmethod
     async def store(self, state: T) -> None:
         pass

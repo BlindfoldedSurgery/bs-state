@@ -1,0 +1,55 @@
+from asyncio.locks import Lock
+from pathlib import Path
+from typing import Generic, Self, Type, TypeVar
+
+from pydantic import BaseModel
+
+from bs_state import AccessException, MissingStateException, StateStorage
+
+try:
+    import aiofile
+except ImportError:
+    raise RuntimeError("Requires extra 'file', i.e. bs-state[file]")
+
+T = TypeVar("T", bound=BaseModel)
+
+
+async def load(*, initial_state: T, file: Path) -> StateStorage[T]:
+    return await _FileStateStorage.initialize(initial_state, file)
+
+
+class _FileStateStorage(StateStorage[T], Generic[T]):
+    def __init__(self, state_type: Type[T], file: Path) -> None:
+        self._type: Type[T] = state_type
+        self._file = file
+        self._lock = Lock()
+
+    @classmethod
+    async def initialize(cls, initial_state: T, file: Path) -> Self:
+        storage = cls(type(initial_state), file)
+        try:
+            # See if there are values
+            await storage.load()
+        except MissingStateException:
+            await storage.store(initial_state)
+        return storage
+
+    async def store(self, state: T) -> None:
+        json = state.model_dump_json()
+        async with self._lock:
+            try:
+                async with aiofile.async_open(self._file, "w") as file:
+                    await file.write(json)
+            except OSError as e:
+                raise AccessException from e
+
+    async def load(self) -> T:
+        model = self._type
+        async with self._lock:
+            try:
+                async with aiofile.async_open(self._file, "rb") as file:
+                    return model.model_validate_json(await file.read())
+            except FileNotFoundError:
+                raise MissingStateException(f"No such state file: {self._file}")
+            except OSError as e:
+                raise AccessException from e

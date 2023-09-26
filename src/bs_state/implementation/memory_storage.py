@@ -7,13 +7,17 @@ from bs_state import StateStorage
 T = TypeVar("T", bound=BaseModel)
 
 
-class MemoryStateStorage(StateStorage[T], Generic[T]):
+async def load(*, initial_state: T) -> StateStorage[T]:
+    return _MemoryStateStorage.initialize(initial_state)
+
+
+class _MemoryStateStorage(StateStorage[T], Generic[T]):
     def __init__(self, initial_state: T) -> None:
         self._type: Type[T] = type(initial_state)
         self._values: dict[str, Any] = initial_state.model_dump()
 
     @classmethod
-    async def initialize(cls, initial_state: T) -> Self:
+    def initialize(cls, initial_state: T) -> Self:
         return cls(initial_state)
 
     async def store(self, state: T) -> None:

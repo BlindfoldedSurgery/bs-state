@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import abc
+from typing import Awaitable, Callable, TypeAlias, TypeVar
 
 import pytest
+import pytest_asyncio
 from pydantic import BaseModel
 
-from bs_state import StateStorage, load_state_storage
+from bs_state import StateStorage
 
 
 class StubState(BaseModel):
@@ -39,15 +41,27 @@ def state() -> StubState:
     )
 
 
+T = TypeVar("T", bound=BaseModel)
+StorageFactory: TypeAlias = Callable[[StubState], Awaitable[StateStorage[StubState]]]
+
+
 class ImplementationTest(abc.ABC):
+    @pytest_asyncio.fixture
+    async def storage(
+        self,
+        storage_factory: StorageFactory,
+        state: StubState,
+    ) -> StateStorage[StubState]:
+        return await storage_factory(state)
+
     @pytest.mark.asyncio
-    async def test_load(self, state):
-        storage = await load_state_storage("memory", state)
+    async def test_load(self, storage_factory, state):
+        storage = await storage_factory(state)
         assert isinstance(storage, StateStorage)
 
     @pytest.mark.asyncio
-    async def test_load_copies_state(self, state):
-        storage = await load_state_storage("memory", state)
+    async def test_load_copies_state(self, storage_factory, state):
+        storage = await storage_factory(state)
         state.string = "changed"
         loaded_state = await storage.load()
         assert loaded_state.string == "test"
