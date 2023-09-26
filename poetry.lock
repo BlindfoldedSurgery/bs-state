@@ -4,7 +4,7 @@
 name = "aiofile"
 version = "3.8.8"
 description = "Asynchronous file operations."
-optional = false
+optional = true
 python-versions = ">=3.7, <4"
 files = [
     {file = "aiofile-3.8.8-py3-none-any.whl", hash = "sha256:41e8845cce055779cd77713d949a339deb012eab605b857765e8f8e52a5ed811"},
@@ -76,7 +76,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 name = "caio"
 version = "0.9.13"
 description = "Asynchronous file IO for Linux MacOS or Windows."
-optional = false
+optional = true
 python-versions = ">=3.7, <4"
 files = [
     {file = "caio-0.9.13-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:a921c0514ea2bb161d9d9c4940d409a2431cc6bab89abbf20fb16fdc6964f650"},
@@ -538,7 +538,10 @@ files = [
     {file = "typing_extensions-4.8.0.tar.gz", hash = "sha256:df8e4339e9cb77357558cbdbceca33c303714cf861d1eef15e1070055ae8b7ef"},
 ]
 
+[extras]
+file = ["aiofile"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11 <3.12"
-content-hash = "5ddfc6f902f45da564e7e8bce84c70c33fe0ece5ea7ddfdbbb12f03f1a8d215a"
+content-hash = "7cc37b38323fcc94f226fce444df7441769e29785fd6706ae2a3b07b36edca30"
