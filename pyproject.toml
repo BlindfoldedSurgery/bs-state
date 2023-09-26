@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "bs-state"
+description = "State"
+version = "0.1.0"
+authors = ["BlindfoldedSurgery <team@blindfolded.surgery>"]
+license = "MIT"
+readme = "README.md"
+
+[project.urls]
+repository = "https://github.com/BlindfoldedSurgery/bs-state"
+
+[tool.poetry.dependencies]
+python = ">=3.11 <3.12"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.0.0"
+coverage = { extras = ["toml"], version = "^7.3.1" }
+mypy = "^1.4.0"
+pytest = "^7.1.2"
+pytest-cov = "^4.1.0"
+ruff = "0.0.291"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.mypy.overrides]]
+module = "dotenv"
+ignore_missing_imports = true
+
+[tool.ruff]
+extend-select = [
+    "I001",
+]
+
+[tool.ruff.isort]
+known-first-party = ["bs_state"]

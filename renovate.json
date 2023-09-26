@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>BlindfoldedSurgery/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "python"
+      ],
+      "enabled": false
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+name: Workflow
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - v**
+  pull_request: { }
+
+env:
+  COVERAGE_VERSION: "3.11"
+
+jobs:
+  lint:
+    strategy:
+      matrix:
+        pyversion: [ "3.11" ]
+    container: python:${{ matrix.pyversion }}-slim
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Poetry
+        run: pip install poetry==1.6.1
+      - uses: actions/checkout@v4
+      - run: poetry install
+      - name: Check coding standards
+        run: |
+          poetry run ruff check src/
+          poetry run black --check src/
+          poetry run mypy src/
+
+  test:
+    strategy:
+      matrix:
+        pyversion: [ "3.11" ]
+    container: python:${{ matrix.pyversion }}-slim
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Poetry
+        run: pip install poetry==1.6.1
+      - uses: actions/checkout@v4
+      - run: poetry install
+      - name: Run tests
+        run: |
+          if [ "${{ matrix.pyversion }}" = "${{ env.COVERAGE_VERSION }}" ]
+          then
+            poetry run pytest --cov src/
+          else
+            poetry run pytest src/
+          fi
+      - name: Convert Python coverage file format to XML
+        if: matrix.pyversion == env.COVERAGE_VERSION
+        run: poetry run coverage xml
+      - name: Upload coverage reports to Codecov
+        if: matrix.pyversion == env.COVERAGE_VERSION
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+
+  publish_package:
+    runs-on: ubuntu-latest
+    container: python:3.11-slim
+    needs:
+      - lint
+      - test
+    if: success() && startsWith(github.ref, 'refs/tags/v')
+    env:
+      POETRY_HTTP_BASIC_PYPI_BS_USERNAME: ${{ vars.PYPI_USERNAME }}
+      POETRY_HTTP_BASIC_PYPI_BS_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+    steps:
+      - name: Install Poetry
+        run: pip install poetry==1.6.1
+      - uses: actions/checkout@v4
+      - run: poetry install
+      - name: Build project
+        run: poetry build
+      - name: Upload to pypi registry
+        run: poetry publish -r pypi-bs
