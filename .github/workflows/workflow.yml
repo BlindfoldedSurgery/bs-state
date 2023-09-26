@@ -20,7 +20,7 @@ jobs:
       - name: Install Poetry
         run: pip install poetry==1.6.1
       - uses: actions/checkout@v4
-      - run: poetry install
+      - run: poetry install --all-extras
       - name: Check coding standards
         run: |
           poetry run ruff check src/
@@ -37,7 +37,7 @@ jobs:
       - name: Install Poetry
         run: pip install poetry==1.6.1
       - uses: actions/checkout@v4
-      - run: poetry install
+      - run: poetry install --all-extras
       - name: Run tests
         run: |
           if [ "${{ matrix.pyversion }}" = "${{ env.COVERAGE_VERSION }}" ]
@@ -70,7 +70,6 @@ jobs:
       - name: Install Poetry
         run: pip install poetry==1.6.1
       - uses: actions/checkout@v4
-      - run: poetry install
       - name: Build project
         run: poetry build
       - name: Upload to pypi registry
