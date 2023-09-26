@@ -12,10 +12,12 @@ repository = "https://github.com/BlindfoldedSurgery/bs-state"
 [tool.poetry.dependencies]
 python = ">=3.11 <3.12"
 aiofile = { version = "^3.8.8", optional = true }
+kubernetes_asyncio = { version = "^26.9.0", optional = true }
 pydantic = "^2.4.1"
 
 [tool.poetry.extras]
 file = ["aiofile"]
+kubernetes = ["kubernetes_asyncio"]
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.0.0"
@@ -35,6 +37,10 @@ strict = true
 plugins = [
     "pydantic.mypy",
 ]
+
+[[tool.mypy.overrides]]
+module = "kubernetes_asyncio.*"
+ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "tests.*"
