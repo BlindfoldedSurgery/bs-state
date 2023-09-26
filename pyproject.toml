@@ -37,6 +37,10 @@ plugins = [
 ]
 
 [[tool.mypy.overrides]]
+module = "aiofile"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
 module = "tests.*"
 strict = false
 check_untyped_defs = true
