@@ -10,3 +10,7 @@ lint:
 .PHONY: test
 test:
 	poetry run pytest src/
+
+.PHONY: deps
+deps:
+	poetry install --all-extras --sync
