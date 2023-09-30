@@ -44,9 +44,9 @@ jobs:
         run: |
           if [ "${{ matrix.pyversion }}" = "${{ env.COVERAGE_VERSION }}" ]
           then
-            poetry run pytest -m "not kubernetes" --cov src/
+            poetry run pytest --cov src/
           else
-            poetry run pytest -m "not kubernetes" src/
+            poetry run pytest src/
           fi
       - name: Convert Python coverage file format to XML
         if: matrix.pyversion == env.COVERAGE_VERSION
