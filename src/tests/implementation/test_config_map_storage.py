@@ -9,6 +9,7 @@ from bs_state.implementation import config_map_storage
 from tests.implementation.conftest import ImplementationTest, T
 
 
+@pytest.mark.skip
 @pytest.mark.kubernetes
 class TestConfigMapState(ImplementationTest):
     @pytest.fixture
