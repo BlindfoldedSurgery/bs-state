@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Install Poetry
         run: pip install poetry==1.6.1
+      - name: Start minikube
+        uses: medyagh/setup-minikube@latest
       - uses: actions/checkout@v4
       - run: poetry install --all-extras
       - name: Run tests

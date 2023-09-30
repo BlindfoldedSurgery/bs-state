@@ -1,6 +1,6 @@
 from asyncio import Lock
 from importlib.util import find_spec
-from typing import Generic, Self, Type, TypeVar
+from typing import Any, Generic, Self, Type, TypeVar
 
 from pydantic import BaseModel
 
@@ -39,9 +39,17 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
 
     @classmethod
     async def initialize(
-        cls, initial_state: T, *, namespace: str, config_map_name: str
+        cls,
+        initial_state: T,
+        *,
+        namespace: str,
+        config_map_name: str,
+        kubeconfig: dict[str, Any] | None = None,
     ) -> Self:
-        config.load_incluster_config()
+        if kubeconfig is None:
+            config.load_incluster_config()
+        else:
+            await config.load_kube_config_from_dict(kubeconfig)
 
         storage = cls(
             type(initial_state),
@@ -56,9 +64,8 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
         return storage
 
     async def store(self, state: T) -> None:
-        # TODO: a bit prettier maybe?
-        config_map = client.V1ConfigMap(data={"state": state.model_dump_json()})
-        async with client.ApiClient as api:
+        config_map = client.V1ConfigMap(data=state.model_dump_json())
+        async with client.ApiClient() as api:
             v1 = client.CoreV1Api(api)
             async with self._lock:
                 await v1.replace_namespaced_config_map(
@@ -69,7 +76,7 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
 
     async def load(self) -> T:
         async with self._lock:
-            async with client.ApiClient as api:
+            async with client.ApiClient() as api:
                 v1 = client.CoreV1Api(api)
                 async with self._lock:
                     config_map = await v1.read_namespaced_config_map(
@@ -77,4 +84,4 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
                         namespace=self._namespace,
                     )
 
-        return self._type.model_validate_json(config_map.data["state"])
+        return self._type.model_validate(config_map.data)

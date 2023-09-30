@@ -9,7 +9,7 @@ lint:
 
 .PHONY: test
 test:
-	poetry run pytest src/
+	poetry run pytest -m "not kubernetes" src/
 
 .PHONY: deps
 deps:
