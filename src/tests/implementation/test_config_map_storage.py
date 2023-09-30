@@ -30,6 +30,7 @@ class TestConfigMapState(ImplementationTest):
                 initial_state=state,
                 namespace="default",
                 config_map_name=request.node.name,
+                kubeconfig=kubeconfig,
             )
 
         return _factory

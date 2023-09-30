@@ -15,12 +15,17 @@ T = TypeVar("T", bound=BaseModel)
 
 
 async def load(
-    *, initial_state: T, namespace: str, config_map_name: str
+    *,
+    initial_state: T,
+    namespace: str,
+    config_map_name: str,
+    kubeconfig: dict[str, Any] | None = None,
 ) -> StateStorage[T]:
     return await _ConfigMapStateStorage.initialize(
         initial_state,
         namespace=namespace,
         config_map_name=config_map_name,
+        kubeconfig=kubeconfig,
     )
 
 
@@ -44,7 +49,7 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
         *,
         namespace: str,
         config_map_name: str,
-        kubeconfig: dict[str, Any] | None = None,
+        kubeconfig: dict[str, Any] | None,
     ) -> Self:
         if kubeconfig is None:
             config.load_incluster_config()
