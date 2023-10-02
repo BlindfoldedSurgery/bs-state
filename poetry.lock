@@ -529,13 +529,13 @@ files = [
 
 [[package]]
 name = "kubernetes-asyncio"
-version = "26.9.0"
+version = "27.6.0"
 description = "Kubernetes asynchronous python client"
 optional = true
 python-versions = "*"
 files = [
-    {file = "kubernetes_asyncio-26.9.0-py3-none-any.whl", hash = "sha256:9d8b0eb86aa18c3166cd2ada4a3d7ce5850ed0a1c5224bcf54c2cb330c6c6b90"},
-    {file = "kubernetes_asyncio-26.9.0.tar.gz", hash = "sha256:a44c741f0ad9b2e3f85f38bbb96dcd7adb47297a9644e470cb3d6d6c8f29e745"},
+    {file = "kubernetes_asyncio-27.6.0-py3-none-any.whl", hash = "sha256:911c132df0c2076c85781bd8b5b83c935e5351023c73ca796302653d82dddb91"},
+    {file = "kubernetes_asyncio-27.6.0.tar.gz", hash = "sha256:68d5a92dea859f0174eb3ffb93e2f64c4942e6dea44167d44f82436c5772375c"},
 ]
 
 [package.dependencies]
@@ -1190,4 +1190,4 @@ kubernetes = ["kubernetes_asyncio"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11 <3.12"
-content-hash = "1a69e2113f1d0076d59a218607b248b3e30b7a4ee04207228eb941c3b0ba1d17"
+content-hash = "1811ab43e866024a604daf9928bf344b6379da421fae194875f8ac83018467c8"
