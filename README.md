@@ -10,5 +10,5 @@
 [sonarcloud-image]: https://sonarcloud.io/api/project_badges/measure?project=BlindfoldedSurgery_bs-state&metric=sqale_rating
 [sonarcloud-link]: https://sonarcloud.io/summary/new_code?id=BlindfoldedSurgery_bs-state
 
-[codecov-image]: https://codecov.io/gh/BlindfoldedSurgery/bs-state/graph/badge.svg?token=GXR5GIAQ20
+[codecov-image]: https://codecov.io/gh/BlindfoldedSurgery/bs-state/graph/badge.svg?token=BT5OY4VJ3P
 [codecov-link]: https://codecov.io/gh/BlindfoldedSurgery/bs-state
