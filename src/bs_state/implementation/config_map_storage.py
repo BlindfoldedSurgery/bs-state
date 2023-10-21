@@ -80,13 +80,12 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
                 )
 
     async def load(self) -> T:
-        async with self._lock:
-            async with client.ApiClient() as api:
-                v1 = client.CoreV1Api(api)
-                async with self._lock:
-                    config_map = await v1.read_namespaced_config_map(
-                        name=self._config_map_name,
-                        namespace=self._namespace,
-                    )
+        async with client.ApiClient() as api:
+            v1 = client.CoreV1Api(api)
+            async with self._lock:
+                config_map = await v1.read_namespaced_config_map(
+                    name=self._config_map_name,
+                    namespace=self._namespace,
+                )
 
         return self._type.model_validate(config_map.data)
