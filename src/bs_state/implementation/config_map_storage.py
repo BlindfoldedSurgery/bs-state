@@ -31,6 +31,8 @@ async def load(
 
 
 class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
+    DATA_KEY = "state"
+
     def __init__(
         self,
         state_type: Type[T],
@@ -70,7 +72,9 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
         return storage
 
     async def store(self, state: T) -> None:
-        config_map = client.V1ConfigMap(data=state.model_dump_json())
+        config_map = client.V1ConfigMap(
+            data={self.DATA_KEY: state.model_dump_json()},
+        )
         async with client.ApiClient() as api:
             v1 = client.CoreV1Api(api)
             async with self._lock:
@@ -94,4 +98,9 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
                         raise MissingStateException()
                     raise e
 
-        return self._type.model_validate(config_map.data)
+        data = config_map.data.get(self.DATA_KEY)
+
+        if not data:
+            raise MissingStateException()
+
+        return self._type.model_validate(data)
