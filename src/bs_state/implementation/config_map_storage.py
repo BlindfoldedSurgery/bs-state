@@ -2,6 +2,7 @@ from asyncio import Lock
 from importlib.util import find_spec
 from typing import Any, Generic, Self, Type, TypeVar
 
+from kubernetes_asyncio.client import ApiException
 from pydantic import BaseModel
 
 from bs_state import MissingStateException, StateStorage
@@ -83,9 +84,14 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
         async with client.ApiClient() as api:
             v1 = client.CoreV1Api(api)
             async with self._lock:
-                config_map = await v1.read_namespaced_config_map(
-                    name=self._config_map_name,
-                    namespace=self._namespace,
-                )
+                try:
+                    config_map = await v1.read_namespaced_config_map(
+                        name=self._config_map_name,
+                        namespace=self._namespace,
+                    )
+                except ApiException as e:
+                    if e.status == 404:
+                        raise MissingStateException()
+                    raise e
 
         return self._type.model_validate(config_map.data)
