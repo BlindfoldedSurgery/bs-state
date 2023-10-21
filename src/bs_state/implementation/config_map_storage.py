@@ -68,31 +68,32 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
             # See if there are values
             await storage.load()
         except MissingStateException:
-            await storage.create_config_map()
+            await storage._create_config_map()
             await storage.store(initial_state)
         return storage
 
-    async def create_config_map(self) -> None:
+    @property
+    def _metadata(self) -> V1ObjectMeta:
+        return V1ObjectMeta(
+            namespace=self._namespace,
+            name=self._config_map_name,
+        )
+
+    async def _create_config_map(self) -> None:
         async with client.ApiClient() as api:
             v1 = client.CoreV1Api(api)
             async with self._lock:
                 await v1.create_namespaced_config_map(
                     namespace=self._namespace,
                     body=V1ConfigMap(
-                        metadata=V1ObjectMeta(
-                            namespace=self._namespace,
-                            name=self._config_map_name,
-                        ),
+                        metadata=self._metadata,
                         data={},
                     ),
                 )
 
     async def store(self, state: T) -> None:
         config_map = client.V1ConfigMap(
-            metadata=V1ObjectMeta(
-                namespace=self._namespace,
-                name=self._config_map_name,
-            ),
+            metadata=self._metadata,
             data={self.DATA_KEY: state.model_dump_json()},
         )
         async with client.ApiClient() as api:
