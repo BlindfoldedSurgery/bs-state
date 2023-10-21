@@ -25,13 +25,17 @@ class TestConfigMapState(ImplementationTest):
         result = cast(dict[str, Any], json.loads(process.stdout))
         return result
 
+    @staticmethod
+    def slugify(method_name: str) -> str:
+        return method_name.replace("_", "-").replace(".", "-")
+
     @pytest.fixture
     def storage_factory(self, kubeconfig, request):
         async def _factory(state: T) -> StateStorage[T]:
             return await config_map_storage.load(
                 initial_state=state,
                 namespace="default",
-                config_map_name=request.node.name,
+                config_map_name=self.slugify(request.node.name),
                 kubeconfig=kubeconfig,
             )
 
