@@ -19,12 +19,33 @@ jobs:
     strategy:
       matrix:
         python-version: [ "3.11" ]
-    uses: BlindfoldedSurgery/actions-python/.github/workflows/test.yml@v1
-    with:
-      python-version: ${{ matrix.python-version }}
-      submit-coverage: ${{ matrix.python-version == '3.11' }}
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Poetry
+        run: pip install poetry==1.6.1
+      - name: Start minikube
+        uses: medyagh/setup-minikube@latest
+      - uses: actions/checkout@v4
+      - run: poetry install --all-extras
+      - name: Run tests
+        if: matrix.python-version != '3.11'
+        run: poetry run pytest
+      - name: Run tests with coverage
+        if: matrix.python-version == '3.11'
+        run: poetry run pytest --cov src/
+      - name: Convert Python coverage file format to XML
+        if: matrix.python-version == '3.11'
+        run: poetry run coverage xml
+      - name: Upload coverage reports to Codecov
+        if: matrix.python-version == '3.11'
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+
 
   publish_package:
     uses: BlindfoldedSurgery/actions-python/.github/workflows/publish-package.yml@v1
