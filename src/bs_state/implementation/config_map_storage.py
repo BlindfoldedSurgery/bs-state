@@ -123,4 +123,4 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
         if not data:
             raise MissingStateException()
 
-        return self._type.model_validate(data)
+        return self._type.model_validate_json(data)
