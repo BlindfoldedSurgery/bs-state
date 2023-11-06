@@ -52,7 +52,6 @@ jobs:
   bump:
     uses: BlindfoldedSurgery/actions-actions/.github/workflows/commitizen-bump.yml@v2
     needs:
-      - check-commits
       - lint
       - test
     secrets:
