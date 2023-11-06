@@ -5,7 +5,7 @@ from typing import Any, Generic, Self, Type, TypeVar
 from kubernetes_asyncio.client import ApiException, V1ConfigMap, V1ObjectMeta
 from pydantic import BaseModel
 
-from bs_state import MissingStateException, StateStorage
+from bs_state import AccessException, MissingStateException, StateStorage
 
 if find_spec("kubernetes_asyncio") is None:
     raise RuntimeError("Requires extra 'kubernetes', i.e. bs-state[kubernetes]")
@@ -83,13 +83,16 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
         async with client.ApiClient() as api:
             v1 = client.CoreV1Api(api)
             async with self._lock:
-                await v1.create_namespaced_config_map(
-                    namespace=self._namespace,
-                    body=V1ConfigMap(
-                        metadata=self._metadata,
-                        data={},
-                    ),
-                )
+                try:
+                    await v1.create_namespaced_config_map(
+                        namespace=self._namespace,
+                        body=V1ConfigMap(
+                            metadata=self._metadata,
+                            data={},
+                        ),
+                    )
+                except ApiException as e:
+                    raise AccessException from e
 
     async def store(self, state: T) -> None:
         config_map = client.V1ConfigMap(
@@ -99,11 +102,14 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
         async with client.ApiClient() as api:
             v1 = client.CoreV1Api(api)
             async with self._lock:
-                await v1.replace_namespaced_config_map(
-                    name=self._config_map_name,
-                    namespace=self._namespace,
-                    body=config_map,
-                )
+                try:
+                    await v1.replace_namespaced_config_map(
+                        name=self._config_map_name,
+                        namespace=self._namespace,
+                        body=config_map,
+                    )
+                except ApiException as e:
+                    raise AccessException from e
 
     async def load(self) -> T:
         async with client.ApiClient() as api:
@@ -117,7 +123,7 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
                 except ApiException as e:
                     if e.status == 404:
                         raise MissingStateException()
-                    raise e
+                    raise AccessException from e
 
         data = config_map.data.get(self.DATA_KEY)
 
