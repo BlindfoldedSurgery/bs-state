@@ -11,6 +11,10 @@ lint:
 test:
 	poetry run pytest -m "not kubernetes" src/
 
+.PHONY: pre-commit
+pre-commit:
+	pre-commit install --hook-type commit-msg
+
 .PHONY: deps
 deps:
 	poetry install --all-extras --sync
