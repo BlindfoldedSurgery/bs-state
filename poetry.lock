@@ -1529,5 +1529,5 @@ kubernetes = ["kubernetes_asyncio"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">=3.11 <3.12"
-content-hash = "64ce633c4404c5a66dfacf86d4a88ec6633d7b1124957d291439307e8ec1052a"
+python-versions = ">=3.11 <3.13"
+content-hash = "a3b74bd0354dae99737afda8f6c47a5ea906eff37d85197446675e35a6279f2f"
