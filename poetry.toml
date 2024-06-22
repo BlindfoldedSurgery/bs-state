@@ -2,4 +2,4 @@
 in-project = true
 
 [repositories.pypi-bs]
-url = " https://pypi.blindfolded.surgery/"
+url = " https://pypi.bjoernpetersen.net/"
