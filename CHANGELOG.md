@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.2 (2024-09-15)
+
+### Fix
+
+- **deps**: update dependency kubernetes_asyncio to v31
+
 ## v0.2.1 (2024-06-22)
 
 ### Fix
