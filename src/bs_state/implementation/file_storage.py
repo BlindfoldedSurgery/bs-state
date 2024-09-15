@@ -1,6 +1,6 @@
 from asyncio.locks import Lock
 from pathlib import Path
-from typing import Generic, Self, Type, TypeVar
+from typing import Generic, Self, TypeVar
 
 from pydantic import BaseModel
 
@@ -19,8 +19,8 @@ async def load(*, initial_state: T, file: Path) -> StateStorage[T]:
 
 
 class _FileStateStorage(StateStorage[T], Generic[T]):
-    def __init__(self, state_type: Type[T], file: Path) -> None:
-        self._type: Type[T] = state_type
+    def __init__(self, state_type: type[T], file: Path) -> None:
+        self._type: type[T] = state_type
         self._file = file
         self._lock = Lock()
 

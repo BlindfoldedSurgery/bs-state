@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import abc
-from typing import Awaitable, Callable, TypeAlias, TypeVar
+from collections.abc import Awaitable, Callable
+from typing import TypeAlias, TypeVar
 
 import pytest
 import pytest_asyncio

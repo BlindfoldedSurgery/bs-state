@@ -1,6 +1,6 @@
 from asyncio import Lock
 from importlib.util import find_spec
-from typing import Any, Generic, Self, Type, TypeVar
+from typing import Any, Generic, Self, TypeVar
 
 from kubernetes_asyncio.client import ApiException, V1ConfigMap, V1ObjectMeta
 from pydantic import BaseModel
@@ -35,12 +35,12 @@ class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
 
     def __init__(
         self,
-        state_type: Type[T],
+        state_type: type[T],
         *,
         namespace: str,
         config_map_name: str,
     ) -> None:
-        self._type: Type[T] = state_type
+        self._type: type[T] = state_type
         self._namespace = namespace
         self._config_map_name = config_map_name
         self._lock = Lock()
