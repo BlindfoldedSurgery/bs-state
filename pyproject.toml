@@ -1,5 +1,5 @@
 [project]
-requires-python = ">=3.11, <3.13"
+requires-python = ">=3.11, <3.14"
 
 [tool.poetry]
 name = "bs-state"
@@ -13,7 +13,7 @@ readme = "README.md"
 repository = "https://github.com/BlindfoldedSurgery/bs-state"
 
 [tool.poetry.dependencies]
-python = ">=3.11 <3.13"
+python = ">=3.11 <3.14"
 aiofile = { version = "^3.8.8", optional = true }
 kubernetes_asyncio = { version = "^31.0.0", optional = true }
 pydantic = "^2.4.1"
