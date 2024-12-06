@@ -1,43 +1,60 @@
 [project]
 requires-python = ">=3.11, <3.14"
-
-[tool.poetry]
 name = "bs-state"
 description = "State"
 version = "0.3.0"
-authors = ["BlindfoldedSurgery <team@blindfolded.surgery>"]
-license = "MIT"
+authors = [{ name = "BlindfoldedSurgery", email = "team@blindfolded.surgery" }]
 readme = "README.md"
+classifiers = [
+    "Private :: Do Not Upload",
+    "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+    "pydantic ~=2.10.0",
+]
 
 [project.urls]
 repository = "https://github.com/BlindfoldedSurgery/bs-state"
 
-[tool.poetry.dependencies]
-python = ">=3.11 <3.14"
-aiofile = { version = "^3.8.8", optional = true }
-kubernetes_asyncio = { version = "^31.0.0", optional = true }
-pydantic = "^2.4.1"
+[project.optional-dependencies]
+file=[
+    "aiofile ~=3.9.0",
+]
+kubernetes = [
+    "kubernetes_asyncio >=31.0.0, <32.0.0",
+]
 
-[tool.poetry.extras]
-file = ["aiofile"]
-kubernetes = ["kubernetes_asyncio"]
+[dependency-groups]
+dev = [
+    "commitizen ==4.1.0",
+    "coverage [toml] >=7.3.1, <8.0.0",
+    "mypy ==1.13.*",
+    "pre-commit >=4.0.0, <5.0.0",
+    "pytest >=8.0.0, <9.0.0",
+    "pytest-asyncio ==0.24.*",
+    "pytest-cov >=6.0.0, <7.0.0",
+    "ruff ==0.8.2",
+]
 
-[tool.poetry.group.dev.dependencies]
-commitizen = "4.1.0"
-coverage = { extras = ["toml"], version = "^7.3.1" }
-mypy = "~1.13"
-pre-commit = "^4.0.0"
-pytest = "^8.0.0"
-pytest-asyncio = "^0.24.0"
-pytest-cov = "^6.0.0"
-ruff = "0.8.2"
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/bs_state",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+]
+
+[tool.uv]
+publish-url = "https://pypi.bjoernpetersen.net/"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.commitizen]
-version_provider = "poetry"
+version_provider = "pep621"
 version_scheme = "semver"
 tag_format = "v$major.$minor.$patch"
 changelog_incremental = true
