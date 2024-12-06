@@ -18,6 +18,7 @@ jobs:
 
   lint:
     strategy:
+      fail-fast: false
       matrix:
         python-version: [ "3.11", "3.12", "3.13" ]
     uses: BlindfoldedSurgery/actions-python/.github/workflows/lint.yml@v2
