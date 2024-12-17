@@ -22,7 +22,7 @@ file=[
     "aiofile ~=3.9.0",
 ]
 kubernetes = [
-    "kubernetes_asyncio >=31.0.0, <32.0.0",
+    "kubernetes_asyncio >=32.0.0, <32.1.0",
 ]
 
 [dependency-groups]
