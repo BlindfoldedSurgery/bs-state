@@ -172,19 +172,19 @@ dev = [
 
 [[package]]
 name = "caio"
-version = "0.9.19"
+version = "0.9.21"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a1/66/92b1673783cd54581b8ae03562e1a65bffbcd032ffcdfe1381a839ab3ee7/caio-0.9.19.tar.gz", hash = "sha256:bdcb529330730c4c364b79789620f33bafad8c2c854c1205ecc2d16511c0b690", size = 26780 }
+sdist = { url = "https://files.pythonhosted.org/packages/8c/ec/85a997230d9681a1d5154bba250cd26133fb79915bfe2c661c7529592503/caio-0.9.21.tar.gz", hash = "sha256:4f1d30ad0f975de07b4a3ae1cd2e9275fa574f2ca0b49ba5ab16208575650a92", size = 26882 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ea/15/cf51cd1bb4fb780247e4af7d57f664563864734d2024c1e92acf75321012/caio-0.9.19-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:98d84118e7e8b151c95b3f797425026dfd912a4cf62edebc0c122ace64c8ee96", size = 42334 },
-    { url = "https://files.pythonhosted.org/packages/69/6b/31e70f63ea3f0be47b5423b56f2d3e0b352f45ca68847c27ed36e41a1ed5/caio-0.9.19-cp311-cp311-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_34_x86_64.whl", hash = "sha256:6e688e1f479694f3aba9936b7aaf5ab36f82f530ca3bab4a7091fe9ab3bf5c7d", size = 79934 },
-    { url = "https://files.pythonhosted.org/packages/b1/81/c48c02f4a103dba0c4a4b8a98bfea05b04033555fbbf788206eab9601beb/caio-0.9.19-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_34_aarch64.whl", hash = "sha256:1d5e867b49a994748d39065a5db183a6fb0e1bdb6c0a0745188ee40239e37d8e", size = 79942 },
-    { url = "https://files.pythonhosted.org/packages/9c/7b/a416555fb35175808b4451bb6cda8f81e15c554c4e2cfd735de28eaf2ed0/caio-0.9.19-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:6d426f2e9fcec7b1a767b187861bd0aecae9f88bc36227331d2fb978722bed90", size = 42402 },
-    { url = "https://files.pythonhosted.org/packages/f7/7c/f046982b4c22a8843ac1c16dbfc2f6b8d8b6a91fc35ec24b0f3b12bfdb9c/caio-0.9.19-cp312-cp312-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_34_x86_64.whl", hash = "sha256:a743fda13e194b21df922ea0cee404e2bcac72a722c469eed6bd893a0cdec1c0", size = 81651 },
-    { url = "https://files.pythonhosted.org/packages/73/de/3ea93e57b82e5475bcf9c3262e8d6c75d2563fe1a07bb5ec3aff3ba6a595/caio-0.9.19-cp312-cp312-manylinux_2_34_aarch64.whl", hash = "sha256:f2bc23784f50ac8a2b5a3a0625ff181a92cbb8f4ce532d23a6be441c38deb7c8", size = 81434 },
-    { url = "https://files.pythonhosted.org/packages/70/6c/57b5df10f8871073a47103e33670f60ee30b2531b0e3f4e94f5244d65ced/caio-0.9.19-cp313-cp313-macosx_10_13_universal2.whl", hash = "sha256:865282c9146ca5377ccf31ba93307915c9c55ed7e67ce0217a80cac85725d94b", size = 42480 },
-    { url = "https://files.pythonhosted.org/packages/3e/87/90aed8e14dac03b61ec68d81fc07da53efaa8e2b50a328ff6b7c85e121d6/caio-0.9.19-cp313-cp313-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_34_x86_64.whl", hash = "sha256:02dc711c1d00c8f542844ab411b863be5fe471dac5b7c202b9589ded86fde4c3", size = 81555 },
-    { url = "https://files.pythonhosted.org/packages/82/fe/a707fdb25db93531fa8545cf9e9ea3f202508e9b967481e05f602ea40e78/caio-0.9.19-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_34_aarch64.whl", hash = "sha256:8222af4feb0d2983633c4ef616055157780d50c7a47b519e38a845078b115c55", size = 81355 },
+    { url = "https://files.pythonhosted.org/packages/0f/11/dec12ae89bd725083e73d70c8fb3a03f2edd84b445a5cff8214cfd6ac415/caio-0.9.21-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:2ed8ee09acd1276dfac38fe1b872873e715370fc8fb1dad214c8b983c4bd5a22", size = 42298 },
+    { url = "https://files.pythonhosted.org/packages/2a/c7/16906aa0bac32ccfd2001ff4b42a8abe593f7a4ba1b9d3b8ab6af1444f38/caio-0.9.21-cp311-cp311-manylinux_2_34_aarch64.whl", hash = "sha256:6e9cadc82495d97f551ec56e67dc4a79ffaf1420aee8dc25676d89dfed97131a", size = 79954 },
+    { url = "https://files.pythonhosted.org/packages/fb/23/50c8bd0b0c3c04fc0c31f0e1034601d01f067b495f4f427065f2ea9deeaf/caio-0.9.21-cp311-cp311-manylinux_2_34_x86_64.whl", hash = "sha256:4997b64640dc0b72efb4f0f835dcdb5d56027352c9a4d53d5fec6e9abc576d35", size = 78085 },
+    { url = "https://files.pythonhosted.org/packages/39/24/6258365f7af3ce62d0c1c29b89716228e1e4b0437df342788634878d5a9f/caio-0.9.21-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:e7314a28d69a0397d1d0ac6c7bfe7973f27f4f7216cf42b0358d7d9ba27bc4cd", size = 42381 },
+    { url = "https://files.pythonhosted.org/packages/ca/ab/a0a0c448c2234277b39970c698861f4d4e3ceadb46f4011f410fca89c7b3/caio-0.9.21-cp312-cp312-manylinux_2_34_aarch64.whl", hash = "sha256:1f4241e2b89f31e1fea342c8da9a987fef71d093df7ba1169f469d0be7592608", size = 81320 },
+    { url = "https://files.pythonhosted.org/packages/f2/95/738ef0a4468ea963156c2f1db69669cf435d1f2e36e4796bc6ba39bb2016/caio-0.9.21-cp312-cp312-manylinux_2_34_x86_64.whl", hash = "sha256:fdab8c817b6835d997db1532ce7d9f5cbe186265bf0ee9a9840b378aa4a1cba7", size = 80005 },
+    { url = "https://files.pythonhosted.org/packages/17/42/a7e241569d027d1d8f80ffe2c527c7109dad90d4db9f91f11f79e5738e34/caio-0.9.21-cp313-cp313-macosx_10_13_universal2.whl", hash = "sha256:de5a805bb646ce687ae7ffd5288d167ab306bef83af15771bd53681b98c46b90", size = 42463 },
+    { url = "https://files.pythonhosted.org/packages/84/56/ab7433ecdec3ef29a894c439fe5571dbdbbeece6051bea6a84f249d9d61d/caio-0.9.21-cp313-cp313-manylinux_2_34_aarch64.whl", hash = "sha256:1819f4b8ca13f8f24350aa4ada40e5632abb595adf4f3a67babb695916fbb4c8", size = 81362 },
+    { url = "https://files.pythonhosted.org/packages/af/9f/c2015ce24f2b6fd82a1fbec7aec1817cdc18ccbbd27efa80e0b964a6765c/caio-0.9.21-cp313-cp313-manylinux_2_34_x86_64.whl", hash = "sha256:56073b55bf37ec687ae4036b9fd1da365116627cc637f878006e984812270eac", size = 80040 },
 ]
 
 [[package]]
@@ -1013,16 +1013,16 @@ wheels = [
 
 [[package]]
 name = "virtualenv"
-version = "20.28.1"
+version = "20.29.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "distlib" },
     { name = "filelock" },
     { name = "platformdirs" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/50/39/689abee4adc85aad2af8174bb195a819d0be064bf55fcc73b49d2b28ae77/virtualenv-20.28.1.tar.gz", hash = "sha256:5d34ab240fdb5d21549b76f9e8ff3af28252f5499fb6d6f031adac4e5a8c5329", size = 7650532 }
+sdist = { url = "https://files.pythonhosted.org/packages/5a/5d/8d625ebddf9d31c301f85125b78002d4e4401fe1c15c04dca58a54a3056a/virtualenv-20.29.0.tar.gz", hash = "sha256:6345e1ff19d4b1296954cee076baaf58ff2a12a84a338c62b02eda39f20aa982", size = 7658081 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/51/8f/dfb257ca6b4e27cb990f1631142361e4712badab8e3ca8dc134d96111515/virtualenv-20.28.1-py3-none-any.whl", hash = "sha256:412773c85d4dab0409b83ec36f7a6499e72eaf08c80e81e9576bca61831c71cb", size = 4276719 },
+    { url = "https://files.pythonhosted.org/packages/f0/d3/12687ab375bb0e077ea802a5128f7b45eb5de7a7c6cb576ccf9dd59ff80a/virtualenv-20.29.0-py3-none-any.whl", hash = "sha256:c12311863497992dc4b8644f8ea82d3b35bb7ef8ee82e6630d76d0197c39baf9", size = 4282443 },
 ]
 
 [[package]]
