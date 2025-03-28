@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.0.0 (2025-03-28)
+
+### Feat
+
+- relax version constraints
+
+### Fix
+
+- **deps**: update dependency pydantic to ==2.11.*
+
 ## v0.3.2 (2024-12-18)
 
 ### Fix

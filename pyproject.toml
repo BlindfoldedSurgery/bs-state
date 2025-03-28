@@ -2,7 +2,7 @@
 requires-python = ">=3.11, <3.14"
 name = "bs-state"
 description = "State"
-version = "0.3.2"
+version = "1.0.0"
 authors = [{ name = "BlindfoldedSurgery", email = "team@blindfolded.surgery" }]
 readme = "README.md"
 classifiers = [
