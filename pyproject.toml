@@ -11,29 +11,29 @@ classifiers = [
 ]
 
 dependencies = [
-    "pydantic ~=2.10.0",
+    "pydantic ==2.10.*",
 ]
 
 [project.urls]
 repository = "https://github.com/BlindfoldedSurgery/bs-state"
 
 [project.optional-dependencies]
-file=[
-    "aiofile ~=3.9.0",
+file = [
+    "aiofile >=3, <4",
 ]
 kubernetes = [
-    "kubernetes_asyncio >=32.0.0, <32.1.0",
+    "kubernetes_asyncio >=32, <33",
 ]
 
 [dependency-groups]
 dev = [
     "commitizen ==4.4.1",
-    "coverage [toml] >=7.3.1, <8.0.0",
+    "coverage [toml] >=7, <8",
     "mypy ==1.15.*",
-    "pre-commit >=4.0.0, <5.0.0",
-    "pytest >=8.0.0, <9.0.0",
+    "pre-commit >=4, <5",
+    "pytest >=8, <9",
     "pytest-asyncio ==0.25.*",
-    "pytest-cov >=6.0.0, <7.0.0",
+    "pytest-cov >=6, <7",
     "ruff ==0.11.2",
 ]
 

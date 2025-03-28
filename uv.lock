@@ -157,21 +157,21 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aiofile", marker = "extra == 'file'", specifier = "~=3.9.0" },
-    { name = "kubernetes-asyncio", marker = "extra == 'kubernetes'", specifier = ">=32.0.0,<32.1.0" },
-    { name = "pydantic", specifier = "~=2.10.0" },
+    { name = "aiofile", marker = "extra == 'file'", specifier = ">=3,<4" },
+    { name = "kubernetes-asyncio", marker = "extra == 'kubernetes'", specifier = ">=32,<33" },
+    { name = "pydantic", specifier = "==2.10.*" },
 ]
 provides-extras = ["file", "kubernetes"]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "commitizen", specifier = "==4.4.1" },
-    { name = "coverage", extras = ["toml"], specifier = ">=7.3.1,<8.0.0" },
+    { name = "coverage", extras = ["toml"], specifier = ">=7,<8" },
     { name = "mypy", specifier = "==1.15.*" },
-    { name = "pre-commit", specifier = ">=4.0.0,<5.0.0" },
-    { name = "pytest", specifier = ">=8.0.0,<9.0.0" },
+    { name = "pre-commit", specifier = ">=4,<5" },
+    { name = "pytest", specifier = ">=8,<9" },
     { name = "pytest-asyncio", specifier = "==0.25.*" },
-    { name = "pytest-cov", specifier = ">=6.0.0,<7.0.0" },
+    { name = "pytest-cov", specifier = ">=6,<7" },
     { name = "ruff", specifier = "==0.11.2" },
 ]
 
