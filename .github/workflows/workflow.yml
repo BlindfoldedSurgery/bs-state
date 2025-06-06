@@ -6,9 +6,15 @@ on:
       - v**
   pull_request: { }
 
+permissions:
+  contents: read
+
 jobs:
   required-meta:
     uses: BlindfoldedSurgery/actions-meta/.github/workflows/required.yml@v1
+    permissions:
+      contents: read
+      pull-requests: write
 
   check-commits:
     uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-check.yml@v4
@@ -68,6 +74,9 @@ jobs:
 
   bump:
     uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-bump.yml@v4
+    permissions:
+      contents: write
+      pull-requests: write
     needs:
       - lint
       - test
