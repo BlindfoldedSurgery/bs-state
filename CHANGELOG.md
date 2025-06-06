@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.0.0 (2025-06-06)
+
+### Feat
+
+- bump minimum Python version to 3.13
+
+### Fix
+
+- use correct import order in config_map_storage
+
 ## v1.0.1 (2025-05-26)
 
 ### Fix
