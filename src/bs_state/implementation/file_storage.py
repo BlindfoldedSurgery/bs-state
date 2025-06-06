@@ -1,6 +1,6 @@
 from asyncio.locks import Lock
 from pathlib import Path
-from typing import Generic, Self, TypeVar
+from typing import Self
 
 from pydantic import BaseModel
 
@@ -11,14 +11,12 @@ try:
 except ImportError:
     raise RuntimeError("Requires extra 'file', i.e. bs-state[file]")
 
-T = TypeVar("T", bound=BaseModel)
 
-
-async def load(*, initial_state: T, file: Path) -> StateStorage[T]:
+async def load[T: BaseModel](*, initial_state: T, file: Path) -> StateStorage[T]:
     return await _FileStateStorage.initialize(initial_state, file)
 
 
-class _FileStateStorage(StateStorage[T], Generic[T]):
+class _FileStateStorage[T: BaseModel](StateStorage[T]):
     def __init__(self, state_type: type[T], file: Path) -> None:
         self._type: type[T] = state_type
         self._file = file
