@@ -30,6 +30,7 @@ redis = [
 
 [dependency-groups]
 dev = [
+    "bs-config [dotenv] ==1.1.1",
     "commitizen ==4.8.2",
     "coverage [toml] >=7, <8",
     "mypy ==1.16.*",
@@ -52,6 +53,14 @@ include = [
 
 [tool.uv]
 publish-url = "https://pypi.bjoernpetersen.net/"
+
+[[tool.uv.index]]
+name = "internal"
+url = "https://pypi.bjoernpetersen.net"
+explicit = true
+
+[tool.uv.sources]
+bs-config = { index = "internal" }
 
 [build-system]
 requires = ["hatchling"]
@@ -87,6 +96,7 @@ disallow_untyped_defs = false
 [tool.pytest.ini_options]
 markers = [
     "kubernetes",
+    "redis",
 ]
 
 [tool.ruff.lint]
