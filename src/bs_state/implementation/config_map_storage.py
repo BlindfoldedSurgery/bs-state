@@ -1,6 +1,6 @@
 from asyncio import Lock
 from importlib.util import find_spec
-from typing import Any, Generic, Self, TypeVar
+from typing import Any, Self
 
 from pydantic import BaseModel
 
@@ -12,10 +12,8 @@ if find_spec("kubernetes_asyncio") is None:
 from kubernetes_asyncio import client, config
 from kubernetes_asyncio.client import ApiException, V1ConfigMap, V1ObjectMeta
 
-T = TypeVar("T", bound=BaseModel)
 
-
-async def load(
+async def load[T: BaseModel](
     *,
     initial_state: T,
     namespace: str,
@@ -30,7 +28,7 @@ async def load(
     )
 
 
-class _ConfigMapStateStorage(StateStorage[T], Generic[T]):
+class _ConfigMapStateStorage[T: BaseModel](StateStorage[T]):
     DATA_KEY = "state"
 
     def __init__(

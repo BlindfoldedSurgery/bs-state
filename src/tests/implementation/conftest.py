@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import abc
 from collections.abc import Awaitable, Callable
-from typing import TypeAlias, TypeVar
 
 import pytest
 import pytest_asyncio
@@ -42,8 +41,7 @@ def state() -> StubState:
     )
 
 
-T = TypeVar("T", bound=BaseModel)
-StorageFactory: TypeAlias = Callable[[StubState], Awaitable[StateStorage[StubState]]]
+type StorageFactory = Callable[[StubState], Awaitable[StateStorage[StubState]]]
 
 
 class ImplementationTest(abc.ABC):

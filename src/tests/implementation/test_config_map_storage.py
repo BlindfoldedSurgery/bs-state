@@ -3,10 +3,11 @@ import subprocess
 from typing import Any, cast
 
 import pytest
+from pydantic import BaseModel
 
 from bs_state import StateStorage
 from bs_state.implementation import config_map_storage
-from tests.implementation.conftest import ImplementationTest, T
+from tests.implementation.conftest import ImplementationTest
 
 
 @pytest.mark.kubernetes
@@ -31,7 +32,7 @@ class TestConfigMapState(ImplementationTest):
 
     @pytest.fixture
     def storage_factory(self, kubeconfig, request):
-        async def _factory(state: T) -> StateStorage[T]:
+        async def _factory[T: BaseModel](state: T) -> StateStorage[T]:
             return await config_map_storage.load(
                 initial_state=state,
                 namespace="default",

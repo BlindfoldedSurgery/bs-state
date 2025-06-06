@@ -1,17 +1,15 @@
-from typing import Any, Generic, Self, TypeVar
+from typing import Any, Self
 
 from pydantic import BaseModel
 
 from bs_state import StateStorage
 
-T = TypeVar("T", bound=BaseModel)
 
-
-async def load(*, initial_state: T) -> StateStorage[T]:
+async def load[T: BaseModel](*, initial_state: T) -> StateStorage[T]:
     return _MemoryStateStorage.initialize(initial_state)
 
 
-class _MemoryStateStorage(StateStorage[T], Generic[T]):
+class _MemoryStateStorage[T: BaseModel](StateStorage[T]):
     def __init__(self, initial_state: T) -> None:
         self._type: type[T] = type(initial_state)
         self._values: dict[str, Any] = initial_state.model_dump()
