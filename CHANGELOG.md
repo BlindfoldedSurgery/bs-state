@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.1.0 (2025-06-06)
+
+### Feat
+
+- implement redis state storage
+- add optional StateStorage.close method
+
 ## v2.0.0 (2025-06-06)
 
 ### Feat
