@@ -35,6 +35,7 @@ dev = [
     "pytest-asyncio ==1.0.*",
     "pytest-cov >=6, <7",
     "ruff ==0.11.13",
+    "uvloop ==0.21.*",
 ]
 
 [tool.hatch.build.targets.sdist]

@@ -23,3 +23,6 @@ class StateStorage[T: BaseModel](abc.ABC):
     @abc.abstractmethod
     async def load(self) -> T:
         pass
+
+    async def close(self) -> None:
+        pass

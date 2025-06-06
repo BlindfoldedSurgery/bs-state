@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import abc
-from collections.abc import Awaitable, Callable
+from collections.abc import AsyncGenerator, Awaitable, Callable
 
 import pytest
 import pytest_asyncio
@@ -50,20 +50,30 @@ class ImplementationTest(abc.ABC):
         self,
         storage_factory: StorageFactory,
         state: StubState,
-    ) -> StateStorage[StubState]:
-        return await storage_factory(state)
+    ) -> AsyncGenerator[StateStorage[StubState]]:
+        instance = await storage_factory(state)
+        try:
+            yield instance
+        finally:
+            await instance.close()
 
     @pytest.mark.asyncio
     async def test_load(self, storage_factory, state):
-        storage = await storage_factory(state)
-        assert isinstance(storage, StateStorage)
+        instance = await storage_factory(state)
+        try:
+            assert isinstance(instance, StateStorage)
+        finally:
+            await instance.close()
 
     @pytest.mark.asyncio
     async def test_load_copies_state(self, storage_factory, state):
-        storage = await storage_factory(state)
-        state.string = "changed"
-        loaded_state = await storage.load()
-        assert loaded_state.string == "test"
+        instance = await storage_factory(state)
+        try:
+            state.string = "changed"
+            loaded_state = await instance.load()
+            assert loaded_state.string == "test"
+        finally:
+            await instance.close()
 
     @pytest.mark.asyncio
     async def test_initial_state_matches(
