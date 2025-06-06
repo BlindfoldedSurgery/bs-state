@@ -2,7 +2,6 @@ from asyncio import Lock
 from importlib.util import find_spec
 from typing import Any, Generic, Self, TypeVar
 
-from kubernetes_asyncio.client import ApiException, V1ConfigMap, V1ObjectMeta
 from pydantic import BaseModel
 
 from bs_state import AccessException, MissingStateException, StateStorage
@@ -11,6 +10,7 @@ if find_spec("kubernetes_asyncio") is None:
     raise RuntimeError("Requires extra 'kubernetes', i.e. bs-state[kubernetes]")
 
 from kubernetes_asyncio import client, config
+from kubernetes_asyncio.client import ApiException, V1ConfigMap, V1ObjectMeta
 
 T = TypeVar("T", bound=BaseModel)
 
