@@ -44,7 +44,7 @@ jobs:
         ports:
           - "6379:6379"
       valkey:
-        image: ghcr.io/valkey-io/valkey:8.0
+        image: ghcr.io/valkey-io/valkey:8.1
         options: "--user valkey"
         ports:
           - "6369:6379"
