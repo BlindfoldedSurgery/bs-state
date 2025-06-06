@@ -24,6 +24,9 @@ file = [
 kubernetes = [
     "kubernetes_asyncio >=32, <33",
 ]
+redis = [
+    "redis[hiredis] >6, <7"
+]
 
 [dependency-groups]
 dev = [
