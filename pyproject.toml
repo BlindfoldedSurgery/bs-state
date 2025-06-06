@@ -25,7 +25,10 @@ kubernetes = [
     "kubernetes_asyncio >=32, <33",
 ]
 redis = [
-    "redis[hiredis] >6, <7"
+    "redis[hiredis] >6, <7",
+]
+valkey = [
+    "valkey[libvalkey] >6, <7",
 ]
 
 [dependency-groups]
@@ -97,6 +100,7 @@ disallow_untyped_defs = false
 markers = [
     "kubernetes",
     "redis",
+    "valkey",
 ]
 
 [tool.ruff.lint]

@@ -40,10 +40,18 @@ jobs:
     services:
       redis:
         image: public.ecr.aws/docker/library/redis:8.0
+        options: "--user redis"
         ports:
           - "6379:6379"
+      valkey:
+        image: ghcr.io/valkey-io/valkey:8.0
+        options: "--user valkey"
+        ports:
+          - "6369:6379"
     env:
       REDIS_HOST: localhost
+      VALKEY_HOST: localhost
+      VALKEY_PORT: 6369
     steps:
       - uses: actions/setup-python@v5
         with:
