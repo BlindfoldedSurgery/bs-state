@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2.0 (2025-06-06)
+
+### Feat
+
+- add valkey support
+
 ## v2.1.0 (2025-06-06)
 
 ### Feat
