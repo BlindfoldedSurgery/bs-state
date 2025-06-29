@@ -79,13 +79,20 @@ jobs:
 
   all-checks-passed:
     runs-on: ubuntu-24.04
-    if: github.event_name == 'pull_request'
+    if: "!cancelled() && github.event_name == 'pull_request'"
     needs:
       - check-commits
       - lint
       - test
     steps:
-      - run: echo 'All checks passed'
+      - run: |
+          if [ "true" == "${{ contains(needs.*.result, 'failure') }}" ]
+          then
+            echo "A required job failed"
+            exit 1
+          else
+            echo "All required jobs passed"
+          fi
 
   bump:
     uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-bump.yml@v4
