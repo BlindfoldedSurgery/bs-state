@@ -36,7 +36,7 @@ dev = [
     "bs-config [dotenv] ==1.1.1",
     "commitizen ==4.8.3",
     "coverage [toml] >=7, <8",
-    "mypy ==1.16.*",
+    "mypy ==1.17.*",
     "pre-commit >=4, <5",
     "pytest >=8, <9",
     "pytest-asyncio ==1.0.*",
