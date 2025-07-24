@@ -41,7 +41,7 @@ dev = [
     "pytest >=8, <9",
     "pytest-asyncio ==1.1.*",
     "pytest-cov >=6, <7",
-    "ruff ==0.12.4",
+    "ruff ==0.12.5",
     "uvloop ==0.21.*",
 ]
 
