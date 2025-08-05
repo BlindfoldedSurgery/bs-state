@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-24.04
     services:
       redis:
-        image: public.ecr.aws/docker/library/redis:8.0
+        image: public.ecr.aws/docker/library/redis:8.2
         options: "--user redis"
         ports:
           - "6379:6379"
