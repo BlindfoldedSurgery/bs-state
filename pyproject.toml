@@ -22,7 +22,7 @@ file = [
     "aiofile >=3, <4",
 ]
 kubernetes = [
-    "kubernetes_asyncio >=32, <33",
+    "kubernetes_asyncio >=33, <34",
 ]
 redis = [
     "redis[hiredis] >6, <7",
