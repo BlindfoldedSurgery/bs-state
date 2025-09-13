@@ -39,7 +39,7 @@ dev = [
     "mypy ==1.17.*",
     "pre-commit >=4, <5",
     "pytest >=8, <9",
-    "pytest-asyncio ==1.1.*",
+    "pytest-asyncio ==1.2.*",
     "pytest-cov >=7, <8",
     "ruff ==0.12.12",
     "uvloop ==0.21.*",
