@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.3.0 (2025-09-19)
+
+### Feat
+
+- add opentelemetry integration
+
 ## v2.2.2 (2025-08-15)
 
 ### Fix
