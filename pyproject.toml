@@ -11,6 +11,7 @@ classifiers = [
 ]
 
 dependencies = [
+    "opentelemetry-api >=1.22, <2",
     "pydantic ==2.11.*",
 ]
 
@@ -25,9 +26,13 @@ kubernetes = [
     "kubernetes_asyncio >=33, <34",
 ]
 redis = [
+    "opentelemetry-instrumentation-redis",
     "redis[hiredis] >6, <7",
 ]
 valkey = [
+    # Seems like that's correct for now
+    # https://valkey-py.readthedocs.io/en/stable/opentelemetry.html#opentelemetry-instrumentation
+    "opentelemetry-instrumentation-redis",
     "valkey[libvalkey] >6, <7",
 ]
 

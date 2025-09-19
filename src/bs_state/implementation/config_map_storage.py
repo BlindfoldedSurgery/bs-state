@@ -2,6 +2,7 @@ from asyncio import Lock
 from importlib.util import find_spec
 from typing import Any, Self
 
+from opentelemetry import trace
 from pydantic import BaseModel
 
 from bs_state import AccessException, MissingStateException, StateStorage
@@ -12,7 +13,10 @@ if find_spec("kubernetes_asyncio") is None:
 from kubernetes_asyncio import client, config
 from kubernetes_asyncio.client import ApiException, V1ConfigMap, V1ObjectMeta
 
+_tracer = trace.get_tracer(__name__)
 
+
+@_tracer.start_as_current_span("load")
 async def load[T: BaseModel](
     *,
     initial_state: T,
@@ -44,6 +48,7 @@ class _ConfigMapStateStorage[T: BaseModel](StateStorage[T]):
         self._lock = Lock()
 
     @classmethod
+    @_tracer.start_as_current_span("initialize")
     async def initialize(
         cls,
         initial_state: T,
@@ -77,6 +82,7 @@ class _ConfigMapStateStorage[T: BaseModel](StateStorage[T]):
             name=self._config_map_name,
         )
 
+    @_tracer.start_as_current_span("create_config_map")
     async def _create_config_map(self) -> None:
         async with client.ApiClient() as api:
             v1 = client.CoreV1Api(api)
@@ -92,6 +98,7 @@ class _ConfigMapStateStorage[T: BaseModel](StateStorage[T]):
                 except ApiException as e:
                     raise AccessException from e
 
+    @_tracer.start_as_current_span("store")
     async def store(self, state: T) -> None:
         config_map = client.V1ConfigMap(
             metadata=self._metadata,
@@ -109,6 +116,7 @@ class _ConfigMapStateStorage[T: BaseModel](StateStorage[T]):
                 except ApiException as e:
                     raise AccessException from e
 
+    @_tracer.start_as_current_span("load")
     async def load(self) -> T:
         async with client.ApiClient() as api:
             v1 = client.CoreV1Api(api)
