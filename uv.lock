@@ -156,7 +156,7 @@ requires-dist = [
     { name = "opentelemetry-api", specifier = ">=1.22,<2" },
     { name = "opentelemetry-instrumentation-redis", marker = "extra == 'redis'" },
     { name = "opentelemetry-instrumentation-redis", marker = "extra == 'valkey'" },
-    { name = "pydantic", specifier = "==2.11.*" },
+    { name = "pydantic", specifier = ">=2.11,<3" },
     { name = "redis", extras = ["hiredis"], marker = "extra == 'redis'", specifier = ">6,<7" },
     { name = "valkey", extras = ["libvalkey"], marker = "extra == 'valkey'", specifier = ">6,<7" },
 ]
