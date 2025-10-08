@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.3.1 (2025-10-08)
+
+### Fix
+
+- loosen constraint on pydantic
+
 ## v2.3.0 (2025-09-19)
 
 ### Feat
