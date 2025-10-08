@@ -5,9 +5,9 @@ description = "State"
 version = "2.3.1"
 authors = [{ name = "BlindfoldedSurgery", email = "team@blindfolded.surgery" }]
 readme = "README.md"
+license = "MIT"
 classifiers = [
     "Private :: Do Not Upload",
-    "License :: OSI Approved :: MIT License",
 ]
 
 dependencies = [
