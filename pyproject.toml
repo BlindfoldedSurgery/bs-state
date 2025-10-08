@@ -12,7 +12,7 @@ classifiers = [
 
 dependencies = [
     "opentelemetry-api >=1.22, <2",
-    "pydantic ==2.11.*",
+    "pydantic >=2.11,<3",
 ]
 
 [project.urls]
