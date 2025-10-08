@@ -38,7 +38,7 @@ valkey = [
 
 [dependency-groups]
 dev = [
-    "bs-config [dotenv] ==1.1.1",
+    "bs-config [dotenv] ==1.1.2",
     "commitizen ==4.9.1",
     "coverage [toml] >=7, <8",
     "mypy ==1.18.*",
