@@ -14,6 +14,7 @@ jobs:
     uses: BlindfoldedSurgery/actions-meta/.github/workflows/required.yml@v2
     permissions:
       contents: read
+      checks: write
       pull-requests: write
 
   check-commits:
