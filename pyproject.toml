@@ -3,9 +3,12 @@ requires-python = ">=3.13, <3.14"
 name = "bs-state"
 description = "State"
 version = "2.3.1"
-authors = [{ name = "BlindfoldedSurgery", email = "team@blindfolded.surgery" }]
+authors = [{ name = "Björn Petersen", email = "pypi@bjoernpetersen.net" }]
 readme = "README.md"
 license = "MIT"
+license-files = [
+    "LICENSE",
+]
 classifiers = [
     "Private :: Do Not Upload",
 ]
@@ -16,6 +19,8 @@ dependencies = [
 ]
 
 [project.urls]
+changelog = "https://github.com/BlindfoldedSurgery/bs-config/blob/main/CHANGELOG.md"
+homepage = "https://github.com/BlindfoldedSurgery/bs-state"
 repository = "https://github.com/BlindfoldedSurgery/bs-state"
 
 [project.optional-dependencies]
@@ -50,15 +55,6 @@ dev = [
     "uvloop ==0.22.*",
 ]
 
-[tool.hatch.build.targets.sdist]
-include = [
-    "src/bs_state",
-    "CHANGELOG.md",
-    "README.md",
-    "LICENSE",
-    "pyproject.toml",
-]
-
 [tool.uv]
 publish-url = "https://pypi.bjoernpetersen.net/"
 
@@ -70,9 +66,14 @@ explicit = true
 [tool.uv.sources]
 bs-config = { index = "internal" }
 
+[tool.uv.build-backend]
+source-include = [
+    "CHANGELOG.md"
+]
+
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build==0.9.*"]
+build-backend = "uv_build"
 
 [tool.commitizen]
 version_provider = "pep621"
@@ -126,6 +127,3 @@ ignore = [
     # redundant-open-modes
     "UP015",
 ]
-
-[tool.ruff.lint.isort]
-known-first-party = ["bs_state"]

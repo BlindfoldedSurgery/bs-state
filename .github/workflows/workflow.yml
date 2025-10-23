@@ -33,6 +33,13 @@ jobs:
       build-tool: uv
       python-version: ${{ matrix.python-version }}
 
+  lint-tests:
+    uses: BlindfoldedSurgery/actions-python/.github/workflows/lint.yml@v5
+    with:
+      build-tool: uv
+      context-path: "tests/"
+      python-version: "3.13"
+
   test:
     strategy:
       matrix:
@@ -67,7 +74,7 @@ jobs:
         run: uv run pytest
       - name: Run tests with coverage
         if: matrix.python-version == '3.13'
-        run: uv run pytest --cov src/
+        run: uv run pytest --cov
       - name: Convert Python coverage file format to XML
         if: matrix.python-version == '3.13'
         run: uv run coverage xml
@@ -84,6 +91,7 @@ jobs:
     needs:
       - check-commits
       - lint
+      - lint-tests
       - test
     steps:
       - run: |
@@ -102,6 +110,7 @@ jobs:
       pull-requests: write
     needs:
       - lint
+      - lint-tests
       - test
     secrets:
       GH_TOKEN: ${{ secrets.GH_PR_TOKEN }}
@@ -113,6 +122,7 @@ jobs:
     uses: BlindfoldedSurgery/actions-python/.github/workflows/publish-package.yml@v5
     needs:
       - lint
+      - lint-tests
       - test
     if: success() && startsWith(github.ref, 'refs/tags/v')
     with:
