@@ -34,7 +34,7 @@ jobs:
       python-version: ${{ matrix.python-version }}
 
   lint-tests:
-    uses: BlindfoldedSurgery/actions-python/.github/workflows/lint.yml@v5
+    uses: BlindfoldedSurgery/actions-python/.github/workflows/lint.yml@v6
     with:
       build-tool: uv
       context-path: "tests/"
