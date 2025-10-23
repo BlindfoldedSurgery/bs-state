@@ -18,8 +18,8 @@ class ValkeyConfig:
     @classmethod
     def from_env(cls, env: Env) -> Self:
         return cls(
-            host=env.get_string("VALKEY_HOST", default="localhost"),
-            port=env.get_int("VALKEY_PORT", default=6369),
+            host=env.get_string("valkey-host", default="localhost"),
+            port=env.get_int("valkey-port", default=6369),
         )
 
 
