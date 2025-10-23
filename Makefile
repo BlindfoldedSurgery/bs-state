@@ -3,13 +3,13 @@ check: lint test
 
 .PHONY: lint
 lint:
-	uv run ruff format src/
-	uv run ruff check --fix --show-fixes src/
-	uv run mypy src/
+	uv run ruff format
+	uv run ruff check --fix --show-fixes
+	uv run mypy src/ tests/
 
 .PHONY: test
 test:
-	uv run pytest -m "not kubernetes" src/
+	uv run pytest -m "not kubernetes"
 
 .PHONY: pre-commit
 pre-commit:
