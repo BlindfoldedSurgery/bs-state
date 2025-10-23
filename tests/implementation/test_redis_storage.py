@@ -18,8 +18,8 @@ class RedisConfig:
     @classmethod
     def from_env(cls, env: Env) -> Self:
         return cls(
-            host=env.get_string("REDIS_HOST", default="localhost"),
-            port=env.get_int("REDIS_PORT", default=6379),
+            host=env.get_string("redis-host", default="localhost"),
+            port=env.get_int("redis-port", default=6379),
         )
 
 
