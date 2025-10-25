@@ -21,13 +21,13 @@ jobs:
     uses: BlindfoldedSurgery/actions-releases/.github/workflows/commitizen-check.yml@v4
     with:
       build-tool: uv
-      python-version: '3.13'
+      python-version: '3.14'
 
   lint:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.13" ]
+        python-version: [ "3.13", "3.14" ]
     uses: BlindfoldedSurgery/actions-python/.github/workflows/lint.yml@v6
     with:
       build-tool: uv
@@ -43,7 +43,7 @@ jobs:
   test:
     strategy:
       matrix:
-        python-version: [ "3.13" ]
+        python-version: [ "3.13", "3.14" ]
     runs-on: ubuntu-24.04
     services:
       redis:
@@ -70,16 +70,16 @@ jobs:
         uses: medyagh/setup-minikube@v0.0.20
       - run: uv sync --all-extras
       - name: Run tests
-        if: matrix.python-version != '3.13'
+        if: matrix.python-version != '3.14'
         run: uv run pytest
       - name: Run tests with coverage
-        if: matrix.python-version == '3.13'
+        if: matrix.python-version == '3.14'
         run: uv run pytest --cov
       - name: Convert Python coverage file format to XML
-        if: matrix.python-version == '3.13'
+        if: matrix.python-version == '3.14'
         run: uv run coverage xml
       - name: Upload coverage reports to Codecov
-        if: matrix.python-version == '3.13'
+        if: matrix.python-version == '3.14'
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -116,7 +116,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_PR_TOKEN }}
     with:
       build-tool: uv
-      python-version: '3.13'
+      python-version: '3.14'
 
   publish_package:
     uses: BlindfoldedSurgery/actions-python/.github/workflows/publish-package.yml@v6
