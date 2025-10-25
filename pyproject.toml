@@ -32,7 +32,7 @@ kubernetes = [
 ]
 redis = [
     "opentelemetry-instrumentation-redis",
-    "redis[hiredis] >=6, <7",
+    "redis[hiredis] >=6, <8",
 ]
 valkey = [
     # Seems like that's correct for now
