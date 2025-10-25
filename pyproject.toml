@@ -21,7 +21,7 @@ dependencies = [
 [project.urls]
 changelog = "https://github.com/BlindfoldedSurgery/bs-config/blob/main/CHANGELOG.md"
 homepage = "https://github.com/BlindfoldedSurgery/bs-state"
-repository = "https://github.com/BlindfoldedSurgery/bs-state"
+source = "https://github.com/BlindfoldedSurgery/bs-state"
 
 [project.optional-dependencies]
 file = [
