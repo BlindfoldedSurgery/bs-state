@@ -25,32 +25,32 @@ repository = "https://github.com/BlindfoldedSurgery/bs-state"
 
 [project.optional-dependencies]
 file = [
-    "aiofile >=3, <4",
+    "aiofile >=3.0.0, <4.0.0",
 ]
 kubernetes = [
-    "kubernetes_asyncio >=33, <34",
+    "kubernetes_asyncio >=33.0.0, <34.0.0",
 ]
 redis = [
     "opentelemetry-instrumentation-redis",
-    "redis[hiredis] >6, <7",
+    "redis[hiredis] >6.0.0, <7.0.0",
 ]
 valkey = [
     # Seems like that's correct for now
     # https://valkey-py.readthedocs.io/en/stable/opentelemetry.html#opentelemetry-instrumentation
     "opentelemetry-instrumentation-redis",
-    "valkey[libvalkey] >6, <7",
+    "valkey[libvalkey] >6.0.0, <7.0.0",
 ]
 
 [dependency-groups]
 dev = [
     "bs-config [dotenv] ==3.2.0",
     "commitizen ==4.9.1",
-    "coverage [toml] >=7, <8",
+    "coverage [toml] >=7.0.0, <8.0.0",
     "mypy ==1.18.*",
-    "pre-commit >=4, <5",
-    "pytest >=8, <9",
+    "pre-commit >=4.0.0, <5.0.0",
+    "pytest >=8.0.0, <9.0.0",
     "pytest-asyncio ==1.2.*",
-    "pytest-cov >=7, <8",
+    "pytest-cov >=7.0.0, <8.0.0",
     "ruff ==0.14.2",
     "uvloop ==0.22.*",
 ]
