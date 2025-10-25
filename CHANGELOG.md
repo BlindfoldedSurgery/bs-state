@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.4.0 (2025-10-25)
+
+### Feat
+
+- **deps**: add support for redis-py v7
+
 ## v2.3.2 (2025-10-25)
 
 ### Fix
