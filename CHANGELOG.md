@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.3.2 (2025-10-25)
+
+### Fix
+
+- use correct redis and valkey dependency constraints
+
 ## v2.3.1 (2025-10-08)
 
 ### Fix

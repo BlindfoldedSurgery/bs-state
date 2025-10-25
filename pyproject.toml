@@ -2,7 +2,7 @@
 requires-python = ">=3.13, <3.14"
 name = "bs-state"
 description = "State"
-version = "2.3.1"
+version = "2.3.2"
 authors = [{ name = "Björn Petersen", email = "pypi@bjoernpetersen.net" }]
 readme = "README.md"
 license = "MIT"
