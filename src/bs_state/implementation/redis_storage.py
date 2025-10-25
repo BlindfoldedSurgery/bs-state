@@ -1,7 +1,8 @@
 import asyncio
 from asyncio.locks import Lock
+from collections.abc import Awaitable
 from importlib.util import find_spec
-from typing import Self
+from typing import Self, cast
 
 from opentelemetry import trace
 from pydantic import BaseModel
@@ -39,7 +40,7 @@ async def load[T: BaseModel](
     RedisInstrumentor().instrument_client(client)
 
     try:
-        await client.ping()
+        await cast(Awaitable[bool], client.ping())
     except AuthenticationError as e:
         asyncio.create_task(client.aclose())
         raise AccessException("Authentication with Redis failed") from e
