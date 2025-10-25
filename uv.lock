@@ -157,8 +157,8 @@ requires-dist = [
     { name = "opentelemetry-instrumentation-redis", marker = "extra == 'redis'" },
     { name = "opentelemetry-instrumentation-redis", marker = "extra == 'valkey'" },
     { name = "pydantic", specifier = ">=2.11,<3" },
-    { name = "redis", extras = ["hiredis"], marker = "extra == 'redis'", specifier = ">6,<7" },
-    { name = "valkey", extras = ["libvalkey"], marker = "extra == 'valkey'", specifier = ">6,<7" },
+    { name = "redis", extras = ["hiredis"], marker = "extra == 'redis'", specifier = ">=6,<7" },
+    { name = "valkey", extras = ["libvalkey"], marker = "extra == 'valkey'", specifier = ">=6,<7" },
 ]
 provides-extras = ["file", "kubernetes", "redis", "valkey"]
 
