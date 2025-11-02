@@ -1,5 +1,15 @@
 # Changelog
 
+## v3.0.0 (2025-11-02)
+
+### BREAKING CHANGE
+
+- Valkey support was dropped in this version
+
+### Feat
+
+- support Python 3.14
+
 ## v2.4.0 (2025-10-25)
 
 ### Feat
