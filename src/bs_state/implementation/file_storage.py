@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from bs_state import AccessException, MissingStateException, StateStorage
 
 try:
-    import aiofile
+    import aiofiles
 except ImportError:
     raise RuntimeError("Requires extra 'file', i.e. bs-state[file]")
 
@@ -41,7 +41,7 @@ class _FileStateStorage[T: BaseModel](StateStorage[T]):
         json = state.model_dump_json()
         async with self._lock:
             try:
-                async with aiofile.async_open(self._file, "w") as file:
+                async with aiofiles.open(self._file, "w") as file:
                     await file.write(json)
             except OSError as e:
                 raise AccessException from e
@@ -51,7 +51,7 @@ class _FileStateStorage[T: BaseModel](StateStorage[T]):
         model = self._type
         async with self._lock:
             try:
-                async with aiofile.async_open(self._file, "rb") as file:
+                async with aiofiles.open(self._file, "rb") as file:
                     return model.model_validate_json(await file.read())
             except FileNotFoundError:
                 raise MissingStateException(f"No such state file: {self._file}")
