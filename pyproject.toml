@@ -34,12 +34,6 @@ redis = [
     "opentelemetry-instrumentation-redis",
     "redis[hiredis] >=6, <8",
 ]
-valkey = [
-    # Seems like that's correct for now
-    # https://valkey-py.readthedocs.io/en/stable/opentelemetry.html#opentelemetry-instrumentation
-    "opentelemetry-instrumentation-redis",
-    "valkey[libvalkey] >=6, <7",
-]
 
 [dependency-groups]
 dev = [
@@ -106,7 +100,6 @@ disallow_untyped_defs = false
 markers = [
     "kubernetes",
     "redis",
-    "valkey",
 ]
 
 [tool.ruff.lint]

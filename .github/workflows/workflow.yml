@@ -51,15 +51,8 @@ jobs:
         options: "--user redis"
         ports:
           - "6379:6379"
-      valkey:
-        image: ghcr.io/valkey-io/valkey:9.0
-        options: "--user valkey"
-        ports:
-          - "6369:6379"
     env:
       REDIS_HOST: localhost
-      VALKEY_HOST: localhost
-      VALKEY_PORT: 6369
     steps:
       - uses: actions/setup-python@v6
         with:
