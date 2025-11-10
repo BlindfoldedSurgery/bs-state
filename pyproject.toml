@@ -97,7 +97,11 @@ strict = false
 check_untyped_defs = true
 disallow_untyped_defs = false
 
-[tool.pytest.ini_options]
+[tool.pytest]
+strict = true
+addopts = [
+    "--import-mode=importlib",
+]
 markers = [
     "kubernetes",
     "redis",
