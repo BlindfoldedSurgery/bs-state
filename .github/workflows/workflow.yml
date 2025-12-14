@@ -63,7 +63,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: astral-sh/setup-uv@v7
       - name: Start minikube
-        uses: medyagh/setup-minikube@v0.0.20
+        uses: medyagh/setup-minikube@v0.0.21
       - run: uv sync --all-extras
       - name: Run tests
         if: matrix.python-version != '3.14'
